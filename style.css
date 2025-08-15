@@ -1,6 +1,9 @@
+html {
+    scroll-behavior: smooth;
+}
 body {
+    background-color: #1a1a1a;
     padding-top: 95px;
-    padding-bottom: 75px;
 }
 a {
     color: white;
@@ -15,6 +18,10 @@ a {
 .profile-img {
     width: 200px;
     height: 200px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.6);
+}
+.profile-img-nav {
     object-fit: cover;
     box-shadow: 0 4px 15px rgba(0, 123, 255, 0.6);
 }
@@ -37,19 +44,62 @@ a {
 }
 
 .gradient-text {
-  font-weight: bold;         /* félkövér, mint a képen */
-  font-size: 3rem;           /* tetszőleges méret */
-  background: linear-gradient(90deg, #667eea, #764ba2); /* kék → lila átmenet */
+  font-weight: bold;
+  font-size: 3rem;
+  background: linear-gradient(90deg, #667eea, #764ba2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
+}
+.gradient-text1 {
+  font-weight: bold;
+  font-size: 3rem;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .projects-box {
     width: 85%;
     height: 400px;
     margin: 0 auto;
 }
-
+.form-control {
+    background-color: #2a2a2a;
+    color: #fff;
+    border: 1px solid #00bcd4;
+}
+#aboutme, #skills, #references, #contact {
+    scroll-margin-top: 70px;
+}
+.social-links, .github-icon, .fb-icon, .ig-icon, .profile-img, .card, .my-projects, .contact-form, .submit-btn , .profile-img-nav, input {
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.social-links:hover {
+    transform: scale(1.1);
+    box-shadow: 0 7px 19px rgba(0, 123, 255, 1);
+}
+.content {
+    transition: box-shadow 0.5s ease;
+}
+.content:hover {
+    box-shadow: 0 7px 19px rgba(0, 123, 255, 1);
+}
+.profile-img:hover, .profile-img-nav:hover {
+    transform: scale(1.1);
+    box-shadow: 0 7px 19px rgba(0, 123, 255, 1);
+}
+.github-icon:hover, .fb-icon:hover, .ig-icon:hover {
+    transform: scale(1.35);
+}
+.card:hover {
+    transform: scale(1.1);
+}
+.my-projects:hover, .submit-btn:hover, input:hover {
+    transform: scale(1.05);
+}
+.contact-form:hover {
+    transform: scale(1.1);
+}
 
 
 
