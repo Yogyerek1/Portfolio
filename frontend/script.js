@@ -11,7 +11,3 @@ root.innerHTML = `
     ${footerHTML}
     ${socialbarHTML}
 `;
-
-let currentLanguge = "eng"; // or hu
-
-
