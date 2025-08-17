@@ -1,4 +1,4 @@
-import { currentLanguage } from "../config.js";
+import { currentLanguage } from "../script.js";
 import { texts as textsHU } from "../languages/hu.js";
 import { texts as textsENG } from "../languages/en.js";
 

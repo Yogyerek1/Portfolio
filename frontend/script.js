@@ -3,7 +3,7 @@ import { getContentHTML } from './templates/content.js';
 import { getFooterHTML } from './templates/footer.js';
 import { socialbarHTML } from './templates/socialbar.js';
 
-let currentLanguage = 'hu';
+export let currentLanguage = 'hu';
 
 const root = document.getElementById('root');
 
