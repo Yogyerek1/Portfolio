@@ -9,16 +9,16 @@ export const headerHTML = `
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#aboutme">About me</a>
+                        <a class="nav-link active" aria-current="page" href="#aboutme"><div id="txt-aboutme"></div></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#skills">Skills</a>
+                        <a class="nav-link" href="#skills"><div id="txt-skills"></div></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#references">References</a>
+                        <a class="nav-link" href="#references"><div id="txt-references"></div></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="#contact"><div id="txt-contact"></div></a>
                     </li>
                 </ul>
                 </div>

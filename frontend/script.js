@@ -12,4 +12,6 @@ root.innerHTML = `
     ${socialbarHTML}
 `;
 
+let currentLanguge = "eng"; // or hu
+
 
