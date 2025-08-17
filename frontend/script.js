@@ -1,13 +1,24 @@
-import { headerHTML } from './templates/header.js';
-import { contentHTML } from './templates/content.js';
-import { footerHTML } from './templates/footer.js';
+import { getHeaderHTML } from './templates/header.js';
+import { getContentHTML } from './templates/content.js';
+import { getFooterHTML } from './templates/footer.js';
 import { socialbarHTML } from './templates/socialbar.js';
+
+let currentLanguage = 'hu';
 
 const root = document.getElementById('root');
 
-root.innerHTML = `
-    ${headerHTML}
-    ${contentHTML}
-    ${footerHTML}
-    ${socialbarHTML}
-`;
+const render = () => {
+    root.innerHTML = `
+        ${getHeaderHTML(currentLanguage)}
+        ${getContentHTML(currentLanguage)}
+        ${getFooterHTML(currentLanguage)}
+        ${socialbarHTML}
+    `;
+    const changeLanguage = document.getElementById('changeLanguage');
+    changeLanguage.addEventListener("click", () => { currentLanguage = currentLanguage === 'eng' ? 'hu' : 'eng'; render();});
+};
+render();
+
+
+
+
