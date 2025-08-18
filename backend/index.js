@@ -1,6 +1,7 @@
 const { getConnection } = require('./models/database.js');
 const express = require('express');
 const path = require('path');
+const bcrypt = require('bcrypt');
 const app = express();
 const port = process.env.PORT || 3000;
 
