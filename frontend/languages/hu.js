@@ -16,4 +16,5 @@ export const texts = {
     name: "név",
     submit: "Küldés",
     quickLinks: "Gyors Elérés",
+    delete: "Törlés",
 };

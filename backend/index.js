@@ -17,30 +17,44 @@ app.get('/admin-log', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
-app.post('/admin-log', async (req, res) => {
-    const connection = getConnection();
-    const password = req.body.pswd;
-
+app.post('/check-data', async (req, res) => {
+    const password = req.body.data;
     if (!password) {
-        return res.status(400).send("Please fill this input!");
+        return res.json({ success: false, message: 'Kérlek, add meg a jelszót!' });
     }
-
+    const connection = getConnection();
     try {
         const [rows] = await connection.execute('SELECT passw FROM admin WHERE id=1');
-        if (rows.length > 0) {
-            const db_pass = rows[0].passw;
-            const match = await bcrypt.compare(password, db_pass);
-            if (match) {
-                return res.send("Sikeres bejelentkezés!"); // ide jön majd az admin oldal
-            } else {
-                return res.status(401).send("Hibás jelszó.");
-            }
+        if (rows.length === 0) {
+            return res.json({ success: false, message: 'Lekérdezés hiba!' });
+        }
+
+        const dbPass = rows[0].passw;
+
+        if (await bcrypt.compare(password, dbPass)) {
+            return res.json({ success: true, message: 'Sikeres bejelentkezés!' });
         } else {
-            return res.status(500).send("Sikertelen lekérdezés.");
+            return res.json({ success: false, message: 'Rossz jelszó!' });
         }
     } catch (err) {
-        console.error(err);
-        return res.status(500).send("Adatbázis hiba.");
+        console.log(err);
+        return res.json({ success: false, message: 'Adatbázis hiba!' });
+    }
+
+});
+
+app.post ('/add-data', async (req, res) => {
+    const pname = req.body.pname;
+    const pstack = req.body.pstack;
+    if (!pname || !pstack) {
+        return res.json({ success: false, message: 'Kérlek tölts ki minden mezőt!' });
+    }
+    const connection = getConnection();
+    try {
+        await connection.execute('INSERT INTO pname, pstack VALUES (?, ?)', [pname, pstack]);
+        return res.json({ success: true, message: 'Projekt hozzáadva!' });
+    } catch (err) {
+        return res.json({ success: false, message: 'Adatbázis hiba!' });
     }
 });
 

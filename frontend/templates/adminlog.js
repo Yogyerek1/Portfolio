@@ -1,12 +1,23 @@
-
-export const adminLogHTML = `
-    <div class="container align-items-center justify-content-center w-50 h-50 bg-dark p-5 rounded border border-primary">
-        <form method="post">
-            <label for="pwd" class="form-label text-white fw-bold fs-1 d-block text-center">Admin panel</label>            <div class="mb-3">
-                <label for="pwd" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password:" name="pswd" autocomplete="off">
+export function getAdminLogModal () {
+    return `
+        <div class="modal fade bg-dark" id="adminlog" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Admin Login</h5>
+                    <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                </div>
+                <div class="modal-body">
+                    <form id="admin-log-form">
+                    <div class="mb-3">
+                        <label for="Password" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="pswd" name="pswd" autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn btn-success w-100" id="admin-log-btn">Login</button>
+                    </form>
+                </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Login</button>
-        </form>
-    </div>
-`;
+        </div>
+    `;
+}

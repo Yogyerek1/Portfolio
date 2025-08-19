@@ -16,4 +16,5 @@ export const texts = {
     name: "name",
     submit: "Submit",
     quickLinks: "Quick Links",
+    delete: "Delete",
 };
