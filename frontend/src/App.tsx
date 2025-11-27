@@ -12,7 +12,6 @@ const navItems: NavItem[] = [
 ];
 
 function App() {
-
   return (
     <>
       <NavBar items={navItems} profileImg={profileImg} />
