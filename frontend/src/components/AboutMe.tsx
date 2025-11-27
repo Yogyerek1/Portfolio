@@ -7,7 +7,7 @@ type AboutMeProps = {
 
 export default function AboutMe({name, description}: AboutMeProps) {
     return (
-        <div className="flex flex-col items-center w-full min-h-screen pt-14 p-5 bg-slate-800">
+        <div className="flex flex-col items-center w-full h-full pt-14 pb-14 p-5 bg-slate-800">
             <div>
                 <img 
                     src={profileImg} 
