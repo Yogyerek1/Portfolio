@@ -12,6 +12,8 @@ export default function Projects () {
             <br />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
                 <ProjectCard title="Portfolio" description="This is my portfolio site." siteUrl="https://portfolio-ktjmjubo9-yogyerek1s-projects.vercel.app/#aboutme" githubUrl="https://github.com/Yogyerek1/Portfolio" technologies={['React + TypeScript', 'FastAPI']} />
+                <ProjectCard title="Molito web engine" description="vycos_zen's project" siteUrl="https://molitio.hu" githubUrl="https://github.com/molitio/molitio-web-engine" technologies={['React + TypeScript', 'NestJS']} />
+                <ProjectCard title="Hybrid engine" description="It is a chess API." technologies={['FastAPI']} />
             </div>
         </div>
     );
