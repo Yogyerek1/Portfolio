@@ -7,6 +7,7 @@ import Container from './components/Container';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Line from './components/Line';
+import Contact from './components/Contact';
 
 const navItems: NavItem[] = [
     { label: 'Home', href: '#home', enable: true },
@@ -26,6 +27,7 @@ function App() {
           <Line />
           <Projects />
           <Line />
+          <Contact />
         </Container>
       </div>
     )

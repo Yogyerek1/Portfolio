@@ -7,7 +7,7 @@ type ContainerProps = {
 
 export default function Container({children, backgoundColor}: ContainerProps) {
     return (
-        <section className={`w-full h-screen z-30 ${backgoundColor} border-y-1 border-blue-700`}>
+        <section className={`w-full min-h-screen z-30 ${backgoundColor} border-y-1 border-blue-700`}>
             {children}
         </section>
     );
