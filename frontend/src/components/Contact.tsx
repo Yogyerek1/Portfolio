@@ -2,7 +2,7 @@ export default function Contact() {
     return (
         <div className="pt-5 pb-10 flex flex-col items-center">
             <h1 className="text-3xl text-center md:text-4xl lg:text-5xl font-bold text-blue-400 drop-shadow-[0_0_15px_rgba(96,165,250,0.8)] mb-3">
-                Contact Me
+                Contact With Me
             </h1>
             
             <p className="text-center text-gray-400 text-sm md:text-base mb-6 max-w-xl px-4">

@@ -3,11 +3,12 @@ import type { ReactNode } from "react";
 type ContainerProps = {
     children: ReactNode;
     backgoundColor?: string;
+    id?: string;
 };
 
-export default function Container({children, backgoundColor}: ContainerProps) {
+export default function Container({children, backgoundColor, id}: ContainerProps) {
     return (
-        <section className={`w-full min-h-screen z-30 ${backgoundColor} border-y-1 border-blue-700`}>
+        <section id={id} className={`w-full min-h-screen z-30 ${backgoundColor} border-y-1 border-blue-700`}>
             {children}
         </section>
     );

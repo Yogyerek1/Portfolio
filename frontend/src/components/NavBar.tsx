@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export type NavItem = {
     label: string;
@@ -16,9 +16,37 @@ type NavBarProps = {
 export default function NavBar({items, profileImg, className, backgroundColor}: NavBarProps) {
     const [activeItem, setActiveItem] = useState<string>(items.filter(item => item.enable).at(0)?.label || '');
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+    const [isVisible, setIsVisible] = useState<boolean>(true);
+    const [lastScrollY, setLastScrollY] = useState<number>(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY < 10) {
+                setIsVisible(true);
+            }
+            
+            else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                setIsVisible(false);
+                setIsMenuOpen(false);
+            }
+            
+            else if (currentScrollY < lastScrollY) {
+                setIsVisible(true);
+            }
+            
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [lastScrollY]);
 
     return (
-        <div className={`flex flex-row w-screen h-14 fixed top-0 left-0 right-0 ${backgroundColor || 'bg-gray-950'} ${className || ''} z-50`}>
+        <div className={`flex flex-row w-screen h-14 fixed left-0 right-0 ${backgroundColor || 'bg-gray-950'} ${className || ''} z-50 transition-transform duration-300 ${
+            isVisible ? 'translate-y-0' : '-translate-y-full'
+        }`}>
             {/* NavBar */}
             {/* ProfileImg */}
             <div className="flex items-center pl-3">
