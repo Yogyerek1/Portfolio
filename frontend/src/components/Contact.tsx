@@ -67,8 +67,8 @@ export default function Contact() {
                     >
                         Send Message
                     </button>
-                    </form>
-                </div>
+                </form>
             </div>
+        </div>
     );
 }
