@@ -3,6 +3,9 @@ backend/__pycache__/
 backend/venv/
 backend/cli/
 
+backend/database/__pycache__
+backend/models/__pycache__
+
 # Node modules
 node_modules/
 frontend/node_modules/
