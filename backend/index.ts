@@ -21,11 +21,6 @@ const transporter = nodemailer.createTransport({
 });
 
 const texts = {
-    "hu": {
-        emailSubject: 'Köszönöm a kapcsolatfelvételt!',
-        emailText: (name: string, email: string, message: string) => 
-            `Kedves ${name}!\n\nKöszönöm, hogy felvetted velem a kapcsolatot!\n\nÜzeneted: "${message}"\n\nHamarosan visszaírok az ${email} címre.\n\nÜdvözlettel,\nMilkovics Szebasztián!`
-    },
     "en": {
         emailSubject: 'Thank you for contacting me!',
         emailText: (name: string, email: string, message: string) => 
@@ -40,8 +35,7 @@ app.post('/api/contact', async (req: Request, res: Response) => {
     return res.status(400).json({ success: false, error: 'Missing data: name, email or message.' });
   }
 
-  const selectedLang = texts[lang as keyof typeof texts] ? lang : 'hu';
-  const t = texts[selectedLang as keyof typeof texts];
+  const t = texts["en"];
 
   const userMailOptions = {
     from: process.env.EMAIL_USER,
