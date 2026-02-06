@@ -1,6 +1,5 @@
 import "./App.css";
 import NavBar from "./components/NavBar";
-import type { NavItem } from "./components/NavBar";
 import profileImg from "./assets/profileImg.png";
 import AboutMe from "./components/AboutMe";
 import Container from "./components/Container";
@@ -9,14 +8,7 @@ import Projects from "./components/Projects";
 import Line from "./components/Line";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-
-const navItems: NavItem[] = [
-  { label: "Home", href: "#home", enable: true },
-  { label: "About", href: "#about", enable: true },
-  { label: "Skills", href: "#skills", enable: true },
-  { label: "Projects", href: "#projects", enable: true },
-  { label: "Contact", href: "#contact", enable: true },
-];
+import { navItems } from "./config";
 
 function App() {
   return (

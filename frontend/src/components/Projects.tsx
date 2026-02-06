@@ -1,27 +1,8 @@
 import ProjectCard from "./ProjectCard.tsx";
+import { projects } from "../config";
+import type { ProjectType } from "./types";
 
-export default function Projects() {
-  const Projects = [
-    {
-      title: "Portfolio",
-      description: "This is my portfolio site.",
-      siteUrl: "https://milkovics-szebasztian.hu",
-      githubUrl: "https://github.com/Yogyerek1/Portfolio",
-      technologies: ["React + TypeScript", "Express"],
-    },
-    {
-      title: "Molitio web engine",
-      description: "Molitio's project.",
-      siteUrl: "https://molitio.hu",
-      githubUrl: "https://github.com/molitio/molitio-web-engine",
-      technologies: ["React + TypeScript", "NestJS"],
-    },
-    {
-      title: "Hybrid engine",
-      description: "It is a chess API.",
-      technologies: ["Python", "FastAPI"],
-    },
-  ];
+export default function ProjectList() {
   return (
     <div>
       <h1 className="text-3xl text-center md:text-4xl lg:text-5xl font-bold text-blue-400 drop-shadow-[0_0_15px_rgba(96,165,250,0.8)]">
@@ -32,9 +13,9 @@ export default function Projects() {
       </div>
       <br />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-        {Projects.map((project, index) => (
+        {projects.map((project: ProjectType) => (
           <ProjectCard
-            key={index}
+            key={project.title}
             title={project.title}
             description={project.description}
             siteUrl={project.siteUrl}

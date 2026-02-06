@@ -1,114 +1,125 @@
 import { useState, useEffect } from "react";
+import { type NavBarProps } from "./types";
 
-export type NavItem = {
-    label: string;
-    href?: string;
-    enable?: boolean;
-};
+export default function NavBar({
+  items,
+  profileImg,
+  className,
+  backgroundColor,
+}: NavBarProps) {
+  const [activeItem, setActiveItem] = useState<string>(
+    items.filter((item) => item.enable).at(0)?.label || "",
+  );
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [lastScrollY, setLastScrollY] = useState<number>(0);
 
-type NavBarProps = {
-    items: NavItem[];
-    profileImg?: string;
-    className?: string;
-    backgroundColor?: string;
-};
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
 
-export default function NavBar({items, profileImg, className, backgroundColor}: NavBarProps) {
-    const [activeItem, setActiveItem] = useState<string>(items.filter(item => item.enable).at(0)?.label || '');
-    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-    const [isVisible, setIsVisible] = useState<boolean>(true);
-    const [lastScrollY, setLastScrollY] = useState<number>(0);
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+        setIsMenuOpen(false);
+      } else if (currentScrollY < lastScrollY) {
+        setIsVisible(true);
+      }
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const currentScrollY = window.scrollY;
-            
-            if (currentScrollY < 10) {
-                setIsVisible(true);
-            }
-            
-            else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                setIsVisible(false);
-                setIsMenuOpen(false);
-            }
-            
-            else if (currentScrollY < lastScrollY) {
-                setIsVisible(true);
-            }
-            
-            setLastScrollY(currentScrollY);
-        };
+      setLastScrollY(currentScrollY);
+    };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [lastScrollY]);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
-    return (
-        <div className={`flex flex-row w-screen h-14 fixed left-0 right-0 ${backgroundColor || 'bg-gray-950'} ${className || ''} z-50 transition-transform duration-300 ${
-            isVisible ? 'translate-y-0' : '-translate-y-full'
-        }`}>
-            {/* NavBar */}
-            {/* ProfileImg */}
-            <div className="flex items-center pl-3">
-                <img src={profileImg} alt="ProfileImg" className="h-10 w-10 rounded-full border-blue-500" />
-            </div>
+  return (
+    <div
+      className={`flex flex-row w-screen h-14 fixed left-0 right-0 ${backgroundColor || "bg-gray-950"} ${className || ""} z-50 transition-transform duration-300 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
+      {/* NavBar */}
+      {/* ProfileImg */}
+      <div className="flex items-center pl-3">
+        <img
+          src={profileImg}
+          alt="ProfileImg"
+          className="h-10 w-10 rounded-full border-blue-500"
+        />
+      </div>
 
-            {/* NavItems in center */}
-            <nav className="hidden md:flex items-center mx-auto gap-6">
-                {items.filter(item => item.enable).map((item, index) => (
-                    <a
-                        key={index}
-                        href={item.href}
-                        onClick={() => setActiveItem(item.label)}
-                        className={`px-3 py-2 rounded-md transition-all duration-200 ${
-                            activeItem === item.label 
-                                ? 'text-blue-400 bg-gray-800' 
-                                : 'text-gray-100 hover:text-blue-400 hover:bg-gray-800'
-                        }`}
-                    >
-                        {item.label}
-                    </a>
-                ))}
-            </nav>
-
-            {/* Hamburger Menu Button (Mobile) */}
-            <div className="md:hidden ml-auto pr-3 flex items-center">
-                <button
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    className="text-gray-100 hover:text-blue-400"
-                >
-                    <svg className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
-            </div>
-
-            {/* Mobile Menu */}
-            <div 
-                className={`md:hidden absolute border border-b-blue-700 top-14 left-0 right-0 bg-gray-950 shadow-lg overflow-hidden transition-all duration-300 ease-in-out ${
-                    isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                }`}
+      {/* NavItems in center */}
+      <nav className="hidden md:flex items-center mx-auto gap-6">
+        {items
+          .filter((item) => item.enable)
+          .map((item, index) => (
+            <a
+              key={index}
+              href={item.href}
+              onClick={() => setActiveItem(item.label)}
+              className={`px-3 py-2 rounded-md transition-all duration-200 ${
+                activeItem === item.label
+                  ? "text-blue-400 bg-gray-800"
+                  : "text-gray-100 hover:text-blue-400 hover:bg-gray-800"
+              }`}
             >
-                <nav className="flex flex-col">
-                    {items.filter(item => item.enable).map((item, index) => (
-                        <a
-                            key={index}
-                            href={item.href}
-                            onClick={() => {
-                                setActiveItem(item.label);
-                                setIsMenuOpen(false);
-                            }}
-                            className={`px-16 py-3 border-b border-gray-800 transition-all duration-200 ${
-                                activeItem === item.label
-                                    ? 'text-blue-400 bg-gray-800'
-                                    : 'text-gray-100 hover:text-blue-400 hover:bg-gray-800'
-                            }`}
-                        >
-                            {item.label}
-                        </a>
-                    ))}
-                </nav>
-            </div>
-        </div>
-    );
+              {item.label}
+            </a>
+          ))}
+      </nav>
+
+      {/* Hamburger Menu Button (Mobile) */}
+      <div className="md:hidden ml-auto pr-3 flex items-center">
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="text-gray-100 hover:text-blue-400"
+        >
+          <svg
+            className="h-6 w-6 text-blue-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`md:hidden absolute border border-b-blue-700 top-14 left-0 right-0 bg-gray-950 shadow-lg overflow-hidden transition-all duration-300 ease-in-out ${
+          isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <nav className="flex flex-col">
+          {items
+            .filter((item) => item.enable)
+            .map((item, index) => (
+              <a
+                key={index}
+                href={item.href}
+                onClick={() => {
+                  setActiveItem(item.label);
+                  setIsMenuOpen(false);
+                }}
+                className={`px-16 py-3 border-b border-gray-800 transition-all duration-200 ${
+                  activeItem === item.label
+                    ? "text-blue-400 bg-gray-800"
+                    : "text-gray-100 hover:text-blue-400 hover:bg-gray-800"
+                }`}
+              >
+                {item.label}
+              </a>
+            ))}
+        </nav>
+      </div>
+    </div>
+  );
 }
