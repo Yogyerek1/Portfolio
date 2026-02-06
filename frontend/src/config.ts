@@ -17,6 +17,7 @@ export const skills: SkillType[] = [
         title: "Technologies",
         items: [
             "React + TypeScript",
+            "NestJS + TypeScript",
             "Vite",
             "FastAPI",
             "MSSQL",
