@@ -35,8 +35,8 @@ export default function Contact() {
       } else {
         setStatus(`Error: ${data.error}`);
       }
-    } catch (error) {
-      setStatus("Network error. Please try again.");
+    } catch {
+      setStatus("Network error. Please try again!");
     }
   };
 
