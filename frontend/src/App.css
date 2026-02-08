@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+
+@keyframes bounceY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+.bounce-y {
+  animation: bounceY 1.2s infinite;
+}
