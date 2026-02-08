@@ -20,7 +20,10 @@ function App() {
           description="Coding is not just my work, it's my hobby too."
         />
       </section>
-      <Container backgoundColor="bg-gray-950" id="about">
+      <Container
+        className="bg-gradient-to-br from-gray-950 via-[#16213e] to-[#223d6d]"
+        id="about"
+      >
         <section id="skills">
           <Skills />
         </section>
