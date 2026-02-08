@@ -36,9 +36,9 @@ export default function NavBar({
 
   return (
     <div
-      className={`flex flex-row w-screen h-14 fixed left-0 right-0 ${backgroundColor || "bg-gray-950"} ${className || ""} z-50 transition-transform duration-300 ${
+      className={`flex flex-row w-screen h-14 fixed left-0 right-0 z-50 transition-transform duration-300 ${
         isVisible ? "translate-y-0" : "-translate-y-full"
-      }`}
+      } ${backgroundColor || "bg-gray-900/70 backdrop-blur-md"} ${className || ""}`}
     >
       {/* NavBar */}
       {/* ProfileImg */}
@@ -74,7 +74,7 @@ export default function NavBar({
       <div className="md:hidden ml-auto pr-3 flex items-center">
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="text-gray-100 hover:text-blue-400"
+          className="text-gray-100 hover:text-blue-400 bg-gray-900/70 backdrop-blur-md rounded p-1 transition"
         >
           <svg
             className="h-6 w-6 text-blue-400"
@@ -94,7 +94,7 @@ export default function NavBar({
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden absolute border border-b-blue-700 top-14 left-0 right-0 bg-gray-950 shadow-lg overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`md:hidden absolute border border-b-blue-700 top-14 left-0 right-0 bg-gray-900/70 backdrop-blur-2xl shadow-lg overflow-hidden transition-all duration-300 ease-in-out ${
           isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
@@ -120,6 +120,7 @@ export default function NavBar({
             ))}
         </nav>
       </div>
+      <div className="fixed left-0 right-0 top-14 h-[1px] bg-gradient-to-r from-blue-500 via-blue-400 to-blue-700 z-50 pointer-events-none" />
     </div>
   );
 }
