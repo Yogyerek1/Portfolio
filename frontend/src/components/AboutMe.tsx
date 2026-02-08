@@ -7,7 +7,7 @@ type AboutMeProps = {
 
 export default function AboutMe({ name, description }: AboutMeProps) {
   return (
-    <div className="flex flex-col items-center w-full h-full pt-14 pb-14 p-5 bg-gray-900">
+    <div className="bg-gradient-to-br from-[#040911b0] via-[#172e4da1] to-[#223e6d] shadow-[0_0_40px_5px_#223e6d88] border border-[#223e6d55] flex flex-col items-center w-full h-full pt-14 pb-14 p-5 relative overflow-hidden">
       <div>
         <img
           src={profileImg}
