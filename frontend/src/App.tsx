@@ -21,7 +21,7 @@ function App() {
         />
       </section>
       <Container
-        className="bg-gradient-to-br from-gray-950 via-[#16213e] to-[#223d6d]"
+        className="bg-gradient-to-br from-[#0a162e] via-[#16213e] to-[#223d6d]"
         id="about"
       >
         <section id="skills">
