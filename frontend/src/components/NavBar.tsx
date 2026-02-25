@@ -46,7 +46,7 @@ export default function NavBar({
         <img
           src={profileImg}
           alt="ProfileImg"
-          className="h-10 w-10 rounded-full border-blue-500"
+          className="h-10 w-10 rounded-full border-3 border-[#223d6d]"
         />
       </div>
 
@@ -74,7 +74,7 @@ export default function NavBar({
       <div className="md:hidden ml-auto pr-3 flex items-center">
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="text-gray-100 hover:text-blue-400 bg-gray-900/70 backdrop-blur-md rounded p-1 transition"
+          className="text-gray-100 hover:text-blue-400 bg-transparent backdrop-blur-md rounded p-1 transition"
         >
           <svg
             className="h-6 w-6 text-blue-400"
@@ -109,10 +109,10 @@ export default function NavBar({
                   setActiveItem(item.label);
                   setIsMenuOpen(false);
                 }}
-                className={`px-16 py-3 border-b border-gray-800 transition-all duration-200 ${
+                className={`px-16 py-3 border-b border-[#223d6d] transition-all duration-200 ${
                   activeItem === item.label
-                    ? "text-blue-400 bg-gray-800"
-                    : "text-gray-100 hover:text-blue-400 hover:bg-gray-800"
+                    ? "bg-[#223d6d] text-blue-300"
+                    : "bg-[#16213e] text-gray-100 hover:text-blue-300 hover:bg-[#223d6d]"
                 }`}
               >
                 {item.label}

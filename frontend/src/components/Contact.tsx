@@ -58,7 +58,7 @@ export default function Contact() {
       <div className="w-full max-w-2xl px-6">
         <form
           onSubmit={handleSubmit}
-          className="bg-gray-800 p-8 rounded-lg border-4 border-blue-500 hover:shadow-[0_0_30px_rgba(96,165,250,0.7)] transition-all duration-300"
+          className="bg-[#16213e] p-8 rounded-lg border-4 border-[#223d6d] hover:shadow-[0_0_30px_rgba(34,61,109,0.7)] transition-all duration-300"
         >
           {/* Name */}
           <div className="mb-6">
