@@ -11,7 +11,7 @@ export const navItems: NavItem[] = [
 export const skills: SkillType[] = [
     {
         title: "Programming Languages",
-        items: ["TypeScript", "Python", "C#"],
+        items: ["TypeScript", "C#"],
     },
     {
         title: "Technologies",
@@ -19,7 +19,6 @@ export const skills: SkillType[] = [
             "React + TypeScript",
             "NestJS",
             "ASP NET Core",
-            "FastAPI",
             "Vite",
             "MSSQL",
             "MySQL",
