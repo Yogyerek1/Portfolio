@@ -16,7 +16,7 @@ export default function ProjectCard({
   technologies,
 }: ProjectCardProps) {
   return (
-    <div className="bg-[#16213e] rounded-lg border-4 border-[#223d6d] hover:shadow-[0_0_30px_rgba(34,61,109,0.7)] transition-all duration-300 overflow-hidden">
+    <div className="flex flex-col h-full bg-[#16213e] rounded-lg border-4 border-[#223d6d] hover:shadow-[0_0_30px_rgba(34,61,109,0.7)] transition-all duration-300 overflow-hidden">
       {/* Project Image */}
       {image && (
         <div className="w-full h-48 overflow-hidden bg-gray-900">
@@ -29,33 +29,35 @@ export default function ProjectCard({
       )}
 
       {/* Content */}
-      <div className="p-6">
+      <div className="flex flex-col flex-grow p-6">
         {/* Title */}
         <h3 className="text-2xl font-bold text-blue-400 mb-3 drop-shadow-[0_0_8px_rgba(96,165,250,0.6)]">
           {title}
         </h3>
 
-        {/* Description */}
-        <p className="text-gray-300 mb-4 text-sm leading-relaxed">
-          {description}
-        </p>
+        <div className="flex flex-col justify-center flex-grow">
+          {/* Description */}
+          <p className="text-gray-300 mb-4 text-sm leading-relaxed">
+            {description}
+          </p>
 
-        {/* Technologies */}
-        {technologies && technologies.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {technologies.map((tech, index) => (
-              <span
-                key={index}
-                className="px-3 py-1 text-xs font-semibold text-blue-400 bg-gray-900 rounded-full border border-blue-500"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        )}
+          {/* Technologies */}
+          {technologies && technologies.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {technologies.map((tech, index) => (
+                <span
+                  key={index}
+                  className="px-3 py-1 text-xs font-semibold text-blue-400 bg-gray-900 rounded-full border border-blue-500"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* Buttons */}
-        <div className="flex gap-3 mt-6">
+        <div className="flex gap-3 mt-auto pt-4">
           {siteUrl && (
             <a
               href={siteUrl}
