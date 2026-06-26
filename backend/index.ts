@@ -3,11 +3,14 @@ import type { Express, Request, Response } from 'express';
 import cors from 'cors';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import { rateLimit } from 'express-rate-limit';
 
 dotenv.config();
 
 const PORT = 8000;
 const app: Express = express();
+
+app.set('trust proxy', 1);
 
 app.use(cors());
 app.use(express.json());
@@ -28,7 +31,18 @@ const texts = {
     }
 };
 
-app.post('/api/contact', async (req: Request, res: Response) => {
+const contactLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000,
+  max: 1,
+  message: {
+    success: false,
+    error: 'Too many requests. Please wait a minute before sending another message.',
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+app.post('/api/contact', contactLimiter, async (req: Request, res: Response) => {
   const { name, email, message, lang = 'en' } = req.body;
 
   if (!name || !email || !message) {
