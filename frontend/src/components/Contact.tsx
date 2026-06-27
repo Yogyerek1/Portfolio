@@ -20,22 +20,29 @@ export default function Contact() {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/contact`,
+        `${import.meta.env.VITE_API_URL}/contact`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...formData, lang: "en" }),
+          body: JSON.stringify({ ...formData }),
         },
       );
-
+      console.log("Response status from API:", response.status);
       const data = await response.json();
-      if (data.success) {
-        setStatus("Message sent successfully!");
+      console.log("Data received from API:", data);
+
+      if (response.ok && data.success) {
+        setStatus(data.message);
         setFormData({ name: "", email: "", message: "" });
       } else {
-        setStatus(`Error: ${data.error}`);
+        if (data.errors) {
+          const errorMessages = Object.values(data.errors);
+          setStatus(`${errorMessages[0]}`);
+        } else {
+          setStatus(`${data.message || "Something went wrong."}`);
+        }
       }
-    } catch {
+    } catch (error) {
       setStatus("Network error. Please try again!");
     }
   };
@@ -123,7 +130,11 @@ export default function Contact() {
           {/* Status Message */}
           {status && (
             <p
-              className={`mb-4 text-center ${status.includes("successfully") ? "text-green-400" : "text-red-400"}`}
+              className={`mb-4 text-center ${
+                status.includes("Thank you") || status.includes("sent") 
+                  ? "text-green-400" 
+                  : "text-red-400"
+              }`}
             >
               {status}
             </p>
