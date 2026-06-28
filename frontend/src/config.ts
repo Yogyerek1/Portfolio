@@ -41,14 +41,26 @@ export const skills: SkillType[] = [
         title: "DevOps & Tools",
         items: [
             "Docker & Docker Compose",
-            "Git & GitHub / GitLab",
-            "Jenkins",
             "Cloudflare Tunnels",
-            "Linux (Ubuntu / Fedora)",
-            "Windows 10/11",
+            "Linux (Ubuntu)",
+            "Jenkins"
+        ],
+    },
+    {
+        title: "Tools",
+        items: [
+            "Git & GitHub / GitLab",
             "Visual Studio / VS Code",
             "DBeaver / phpMyAdmin",
+            "Jenkins",
             "ClickUp"
+        ],
+    },
+    {
+        title: "Operating Systems",
+        items: [
+            "Linux (Ubuntu / Fedora)",
+            "Windows 10/11",
         ],
     },
 ];
