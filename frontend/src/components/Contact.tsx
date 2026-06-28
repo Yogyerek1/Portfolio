@@ -131,7 +131,7 @@ export default function Contact() {
           {status && (
             <p
               className={`mb-4 text-center ${
-                status.includes("Thank you") || status.includes("sent") 
+                status.includes("Thank you") || status.includes("sent") || status.includes("Sending") 
                   ? "text-green-400" 
                   : "text-red-400"
               }`}

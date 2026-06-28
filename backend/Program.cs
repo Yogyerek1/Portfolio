@@ -1,3 +1,4 @@
+using System.Threading.RateLimiting;
 using dotenv.net;
 using DTOs;
 using RycloonAPI.Shared.Services.Email;
@@ -22,6 +23,43 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+
+    options.OnRejected = async (context, cancellationToken) =>
+    {
+        context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
+        context.HttpContext.Response.ContentType = "application/json";
+
+        await context.HttpContext.Response.WriteAsJsonAsync(new
+        {
+            success = false,
+            message = "You can only send one message per minute. Please try again later."
+        }, cancellationToken);
+    };
+
+    options.AddPolicy("ContactEmailLimit", httpContext =>
+    {
+        string? clientIp = httpContext.Request.Headers["CF-Connecting-IP"].FirstOrDefault();
+
+        if (string.IsNullOrEmpty(clientIp))
+        {
+            clientIp = httpContext.Connection.RemoteIpAddress?.ToString() ?? httpContext.Request.Headers.Host.ToString();
+        }
+        
+        return RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: clientIp,
+            factory: partition => new FixedWindowRateLimiterOptions
+            {
+                AutoReplenishment = true,
+                PermitLimit = 1,
+                Window = TimeSpan.FromMinutes(1),
+                QueueLimit = 0
+            });
+    });
+});
+
 builder.Services.AddValidation();
 
 builder.Services.AddScoped<MailService>();
@@ -29,6 +67,8 @@ builder.Services.AddScoped<MailService>();
 var app = builder.Build();
 
 app.UseCors("AllowFrontend");
+
+app.UseRateLimiter();
 
 app.MapGet("/", () => Results.Ok()); // health check
 
@@ -61,9 +101,7 @@ app.MapPost("/contact", async (ContactDto dto, MailService mailService) => // co
             statusCode: 500
         );
     }
-
-
-
-});
+})
+.RequireRateLimiting("ContactEmailLimit");
 
 app.Run();
