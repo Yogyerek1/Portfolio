@@ -7,7 +7,7 @@ pipeline {
         password(name: 'EMAIL_PASS', defaultValue: '', description: 'SMTP Password / App Password')
         string(name: 'EMAIL_PORT', defaultValue: '465', description: 'SMTP Port (465 or 587)')
         string(name: 'APP_URL', defaultValue: 'https://portfolio.milkovics-szebasztian.hu', description: 'Frontend URL')
-        string(name: 'VITE_API_URL', defaultValue: 'https://api.portfolio.milkovics-szebasztian.hu', description: 'Backend API URL for Frontend')
+        string(name: 'VITE_API_URL', defaultValue: 'https://portfolio-api.milkovics-szebasztian.hu', description: 'Backend API URL for Frontend')
     }
 
     stages {
