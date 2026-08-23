@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  portfolio-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: portfolio-backend
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - app-net
+
+  portfolio-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: portfolio-frontend
+    restart: always
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external: true
