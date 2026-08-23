@@ -8,7 +8,12 @@ services:
     container_name: portfolio-backend
     restart: always
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS=${EMAIL_PASS}
+      - EMAIL_PORT=${EMAIL_PORT}
+      - APP_URL=${APP_URL}
+      - PORT=8080
     networks:
       - app-net
 
@@ -16,6 +21,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=${VITE_API_URL}
     container_name: portfolio-frontend
     restart: always
     networks:
