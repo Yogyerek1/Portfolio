@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'EMAIL_HOST', defaultValue: 'smtp.gmail.com', description: 'SMTP Szerver')
-        string(name: 'EMAIL_USER', defaultValue: '', description: 'E-mail cím (küldő)')
-        password(name: 'EMAIL_PASS', defaultValue: '', description: 'SMTP Jelszó / App Password')
-        string(name: 'EMAIL_PORT', defaultValue: '465', description: 'SMTP Port (pl. 465 vagy 587)')
-        string(name: 'APP_URL', defaultValue: 'https://zenithfactory.dev', description: 'Frontend URL')
-        string(name: 'VITE_API_URL', defaultValue: 'https://api.zenithfactory.dev', description: 'Backend API URL a Frontendnek')
+        string(name: 'EMAIL_HOST', defaultValue: 'smtp.gmail.com', description: 'SMTP server')
+        string(name: 'EMAIL_USER', defaultValue: '', description: 'E-mail adress')
+        password(name: 'EMAIL_PASS', defaultValue: '', description: 'SMTP Password / App Password')
+        string(name: 'EMAIL_PORT', defaultValue: '465', description: 'SMTP Port (465 or 587)')
+        string(name: 'APP_URL', defaultValue: 'https://portfolio.milkovics-szebasztian.hu', description: 'Frontend URL')
+        string(name: 'VITE_API_URL', defaultValue: 'https://api.portfolio.milkovics-szebasztian.hu', description: 'Backend API URL for Frontend')
     }
 
     stages {
